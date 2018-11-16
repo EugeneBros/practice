@@ -1,4 +1,4 @@
 // import $ from 'jquery';
 
-console.log("Hello world!!!");
+console.log("Hi world!!!");
 // $('#app').html('Hey hey');
