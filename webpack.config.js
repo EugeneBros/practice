@@ -1,6 +1,12 @@
 let path = require('path');
 
 const extractTextPlugin = require('extract-text-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const ImageminPlugin = require('imagemin-webpack-plugin');
+
+var isProduction = (process.env.NODE_ENV === 'production');
 
 let conf = {
   entry: {
@@ -40,6 +46,20 @@ let conf = {
           ],
           fallback: 'style-loader',
         }),
+      },
+
+      //Images
+      {
+        test: /\.(png|gif|jpe?g)$/,
+        loaders: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[path][name].[ext]',
+            },
+          },
+          'img-loader',
+        ],
       },
     ]
   },
